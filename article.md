@@ -8,6 +8,9 @@ An emerging trend is the use of RESTful APIs for both exposing data resources as
 There exist commonly used architectures in most distributed web-based software. It is important to understand the purpose of these patterns and where it is applicable.
 
 ###Client-Server
+
+![Architectures - Client-Server](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-client_server.jpg)
+
 The client-server architecture is a fairly well-known and widely used architecture. Most network based applications work in this manner. The architecture consists of a server that acts as a central point that one or many clients may interact with. The idea behind a client-server architecture is that that the server does the heavy lifting and orchestration required, whilst the client consumes the rich data and functionality by interacting with the server. When these computers communicate with each other, there’s a clear need for a common protocol that is understood and supported by both computers. The commonality required is the message format. Imagine the protocol being a channel of communication between two people such as speech which is common between the two, and the message format being the language that is understood between them.
 
 ###Layered
