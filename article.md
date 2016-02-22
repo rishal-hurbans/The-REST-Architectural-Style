@@ -47,6 +47,9 @@ The concept of a uniform interface includes creating a standard method of intera
 HTTP (Hypertext Transfer Protocol) is an application protocol for distributed hypermedia information systems. HTTP is widely used in networked computing, it is hugely prevalent in how the internet works. This section describes the basic concepts of the protocol.
 
 ###URLs (Universal Resource Locators)
+
+![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-urls.jpg)
+
 HTTP URLs consist of several components including:
 * Protocol: The protocol that the request is being made on. Typically HTTP or HTTPS. HTTPS is a secured version of HTTP. It requires a certificate to validate the authenticity of the server in relation to the domain.
 * Domain: The domain includes the address of the server. Typically this is represented by a sub-domain, a domain name, and a top level domain. In the example www.prolificidea.com, www is the sub-domain, this is the default sub-domain for the world wide web. prolificidea.com is the registered domain name.
@@ -76,4 +79,7 @@ HTTP provides operations that are less known, but still useful:
 Many applications tend to use the 200 OK status code for all responses to the client. In the case of errors or additional information, additional information is stored in the response message body. This should be avoided. The HTTP status codes should be leveraged and used correctly in the given context. An example being, a POST request should yield a 201 Created status code in the response rather than just a 200 OK.
 
 ###HTTP/2
+
+![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-http2.jpg)
+
 HTTP/2 is a new faster version of HTTP. The aim of HTTP/2 is to make applications quicker and more robust. HTTP/2 was spawned from Google's SPDY protocol (SPDY is not an acronym, Google just thought is sounded cool). The biggest change is the method of transporting data. Data is being transported using binary rather than using text as HTTP/1 does. Binary data is smaller than text and therefore makes it more efficiently transported over a network. Nothing changes in terms of the semantics of the protocol. The same operations and standards exist when using it. This change shouldn't affect the average web application developer. Developers that build browsers, application servers, or applications that work directly with the network layer will be impacted by the changes of HTTP/2.
