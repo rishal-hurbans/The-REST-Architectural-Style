@@ -83,3 +83,32 @@ Many applications tend to use the 200 OK status code for all responses to the cl
 ![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-http2.jpg)
 
 HTTP/2 is a new faster version of HTTP. The aim of HTTP/2 is to make applications quicker and more robust. HTTP/2 was spawned from Google's SPDY protocol (SPDY is not an acronym, Google just thought is sounded cool). The biggest change is the method of transporting data. Data is being transported using binary rather than using text as HTTP/1 does. Binary data is smaller than text and therefore makes it more efficiently transported over a network. Nothing changes in terms of the semantics of the protocol. The same operations and standards exist when using it. This change shouldn't affect the average web application developer. Developers that build browsers, application servers, or applications that work directly with the network layer will be impacted by the changes of HTTP/2.
+
+## REST Architectural Style
+The REST architectural style was documented by Roy Fielding in his dissertation in the year 2000 in an effort to provide a documented architecture that could be used to guide the development and design of the modern web. The first part of this paper characterised a large number of existing arcitectural constraints of which the ones covered above are only a subset.
+
+In the second part of the paper REST is defined by composing a number of these architectural constraints into a cohesive whole. The patterns used are:
+1. *Client Server:* This constraint provides separation of concerns, improves scalability and improves the portability of the interface.
+2. *Stateless:* This constraint requires that each request contains sufficient state for the server to understand what to do... this provides visibility, readability and scalability.
+3. *Cacheable:* This constraint requires that all responses from the service to its clients are explicitly labelled as cacheable or non-cacheable so that intermediary servers or components can cache responses. This improves efficiency, scalability and user-perceived performance.
+4. *Uniform Interface:* This constraint defines a simple standard for working with a REST service. It includes identification of resources by URI, manipulation of resources through representation, self-descriptive message and HATEOAS.
+5. *Layered System:* This constraint requires that a client should not be able to tell if it is connected to the end server or to an intermediary. Layered systems cause a reduction in performance, but this should be counteracted by caching.
+6. *Code On Demand (optional):* This optional constraint allows client functionality to be extended by downloading and executing code from the server.
+
+### Fundamental Concepts
+#### Resources
+A logical resource is any concept that can be address and referenced using a global identifier, for example a car, dog, etc. URIs are used as the global identifier when implementing REST over HTTP.
+
+#### Server
+A logicial server where resources are located, together with any corresponding data storage features.
+
+#### Client
+Logical clients make requests to logical servers to perform operations on their resources.
+
+#### Request & Response
+The client sends a request consisting of headers and optionally a represenation. The server responds with a status code, headers and optionally a representation.
+
+#### Representation
+The representation contains some or all information about a resources and allows modification of the resource on the server by modifying the representation and sending it back to the server.
+
+
