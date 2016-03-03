@@ -88,16 +88,16 @@ HTTP/2 is a new faster version of HTTP. The aim of HTTP/2 is to make application
 The REST architectural style was documented by Roy Fielding in his dissertation in the year 2000 in an effort to provide a documented architecture that could be used to guide the development and design of the modern web. The first part of this paper characterised a large number of existing arcitectural constraints of which the ones covered above are only a subset.
 
 In the second part of the paper REST is defined by composing a number of these architectural constraints into a cohesive whole. The patterns used are:
-1. *Client Server:* This constraint provides separation of concerns, improves scalability and improves the portability of the interface.
-2. *Stateless:* This constraint requires that each request contains sufficient state for the server to understand what to do... this provides visibility, readability and scalability.
-3. *Cacheable:* This constraint requires that all responses from the service to its clients are explicitly labelled as cacheable or non-cacheable so that intermediary servers or components can cache responses. This improves efficiency, scalability and user-perceived performance.
-4. *Uniform Interface:* This constraint defines a simple standard for working with a REST service. It includes identification of resources by URI, manipulation of resources through representation, self-descriptive message and HATEOAS.
-5. *Layered System:* This constraint requires that a client should not be able to tell if it is connected to the end server or to an intermediary. Layered systems cause a reduction in performance, but this should be counteracted by caching.
-6. *Code On Demand (optional):* This optional constraint allows client functionality to be extended by downloading and executing code from the server.
+ 1. **Client Server:** This constraint provides separation of concerns, improves scalability and improves the portability of the interface.
+ 2. **Stateless:** This constraint requires that each request contains sufficient state for the server to understand what to do... this provides visibility, readability and scalability.
+ 3. **Cacheable:** This constraint requires that all responses from the service to its clients are explicitly labelled as cacheable or non-cacheable so that intermediary servers or components can cache responses. This improves efficiency, scalability and user-perceived performance.
+ 4. **Uniform Interface:** This constraint defines a simple standard for working with a REST service. It includes identification of resources by URI, manipulation of resources through representation, self-descriptive message and HATEOAS.
+ 5. **Layered System:** This constraint requires that a client should not be able to tell if it is connected to the end server or to an intermediary. Layered systems cause a reduction in performance, but this should be counteracted by caching.
+ 6. **Code On Demand (optional):** This optional constraint allows client functionality to be extended by downloading and executing code from the server.
 
 ### Fundamental Concepts
 #### Resources
-A logical resource is any concept that can be address and referenced using a global identifier, for example a car, dog, etc. URIs are used as the global identifier when implementing REST over HTTP.
+A logical resource is any concept that can be addressed and referenced using a global identifier, for example a car, dog, etc. URIs are used as the global identifier when implementing REST over HTTP.
 
 #### Server
 A logicial server where resources are located, together with any corresponding data storage features.
@@ -111,4 +111,296 @@ The client sends a request consisting of headers and optionally a represenation.
 #### Representation
 The representation contains some or all information about a resources and allows modification of the resource on the server by modifying the representation and sending it back to the server.
 
+### Richardson Maturity Model
+The Richardson Maturity Model was first introduced by Leonard Richardson in a 2008 conference talk as a way to judge the quality of a RESTful web API. It assumes that most of the RESTful constraints are met by using web technologies and looks at how an API uses HTTP, URIs and HyperMedia to determine its quality.
 
+![Richardson Maturity Model](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/rest-richardson_maturity_model.jpg)
+
+#### Level 0 - The swamp of POX
+The swamp of Plain Old XML describes an API that is not RESTful at all. An example would be a SOAP-like web service using HTTP as transport, but not using any of the web mechanisms to its advantage. In the example below the API user will always POST a request to the same URI. What action is performed is controlled by the contents of the request.
+
+##### Create a question
+```
+POST /createQuestionService HTTP/1.1
+<createQuestion talk="Robust REST Architectures" question="Do you guys even REST?" 	name="HelloPieter" />
+
+HTTP/1.1 200 OK
+<talk>
+    <questions>
+        <question talk="Robust REST Architectures" question="Do you guys even REST?" username="HelloPieter" />
+        <question talk="Robust REST Architectures" question="What is HATEOAS?" username="CodeWarrior" />
+    </questions>
+</talk>
+```
+
+What's bad about the above example is that the service is essentially a black box. Without documentation it's pretty much impossible to figure out what you can do with the service.
+
+#### Level 1 - Resources
+The first level of RESTfulness begins to get rid of the black box by introducing the concept of resources. Instead of having a single URI for everything our API does we have a URI for each resource that can be manipulated with the API. This simplifies interaction with the API to working with a number of smaller, simpler boxes.
+
+##### List talks
+```
+# Request
+POST /talks HTTP/1.1
+
+HTTP/1.1
+<talks>
+</talks>
+```
+
+##### Create a talk
+```
+POST /talks/create HTTP/1.1
+<talk name="Robust REST Architectures" />
+
+HTTP/1.1 200 OK
+<talk id="1" name="Robust REST Architectures">
+	<questions>
+	</questions>
+</talk>
+```
+
+##### Create a question
+```
+POST /talks/1/questions/create HTTP/1.1
+<question question="Do you guys even REST?" username="HelloPieter" />
+
+HTTP/1.1 200 OK
+<talk id="1" name="Robust REST Architectures">
+	<questions>
+		<question id="1" question="Do you guys even REST?" username="HelloPieter" />
+	</questions>
+</talk>
+```
+
+### Level 2 - HTTP Verbs
+The second level of RESTfulness is attained by using HTTP verbs to implement the uniform interface constraint. That is instead of using URIs to specify what action is being taken as in the previous example, URIs only specify the resource that is being acted on and the verb specifies the operation.
+
+#### List talks
+```
+GET /talks HTTP/1.1
+
+HTTP/1.1 200 OK
+
+<talks>
+</talks>
+```
+
+#### Create a talk
+```
+POST /talks HTTP/1.1
+<talk name="Robust REST Architectures" />
+
+HTTP/1.1 200 OK
+<talk id="1" name="Robust REST Architectures">
+	<questions>
+		<question id="1" question="Do you guys even REST?" username="HelloPieter" />
+	</questions>
+</talk>
+```
+
+#### Add a question
+```
+POST /talks/1/questions HTTP/1.1
+<question question="Do you guys even REST?" username="HelloPieter" />
+
+HTTP/1.1 201 Created
+Location: /talks/1/questions/1
+```
+
+#### Update the question
+```
+PUT /talks/1/questions/1 HTTP/1.1
+<question username="PieterMan" />
+
+HTTP/1.1 200 OK
+<question id="1" talk="1" question="Do you guys even REST?" username="PieterMan" />
+```
+
+#### View the talk
+```
+GET /talks/1 HTTP/1.1
+
+HTTP/1.1 200 OK
+<talk id="1" name="Robust REST Architectures">
+	<questions>
+		<question id="1" question="Do you guys even REST?" username="PieterMan" />
+	</questions>
+</talk>
+```
+
+#### Delete the question
+```
+DELETE /talks/1/questions/1 HTTP/1.1
+
+HTTP/1.1 200 OK
+<talk id="1" name="Robust REST Architectures">
+	<questions>
+		<question id="1" question="Do you guys even REST?" username="PieterMan" />
+	</questions>
+</talk>
+```
+
+### Level 3 - HATEOAS
+The acryonym HATEAOS means Hypermedia As The Engine Of Application State. In essence it involves adding links to your representations to make your API explorable, similar to how links in HTML documents make web sites explorable.
+
+#### List available API resources
+```
+GET /api HTTP/1.1
+
+HTTP/1.1 200 OK
+<api>
+	<links>
+		<link>
+			<rel>talks</rel>
+			<href>/api/talks</href>
+		</link>
+		<link>
+			<rel>questions</rel>
+			<href>/api/questions</href>
+		</link>
+	</links>
+</api>
+```
+
+#### List all talk resources
+```
+GET /api/talks HTTP/1.1
+
+HTTP/1.1 200 OK
+
+<talks>
+    <talk>
+    	<name>Robust REST Architectures</name>
+    	<links>
+            <link>
+            	<rel>self</rel>
+            	<href>/api/talks/1</href>
+        	</link>
+        	<link>
+        		<rel>questions</rel>
+        		<href>/api/talks/1/questions</href>
+    		</link>
+		</links>
+	</talk>
+</talks>
+```
+
+### The Glory Of Rest
+So in summary the ideal REST API is a self-documented interactive service:
+* GET /api gives a list of all resources with their links
+* Following those links allow you to explore all of the resources
+* Using HTTP verbs on those resource URIs allow you to perform CRUD operations
+
+## Message Formats
+REST is not tied to a specific message format. Initially XML was used, but in recent years JSON has become more popular as many clients are easily able to interpret JSON messages. In theory there's nothing preventing you from creating a RESTful service that uses images as representations.
+
+### Message Formats: XML
+Extensible Markup Language was introduced in 1996 and forms the basis for SOAP-WS standards. Here's an example of a valid XML document:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Person>
+	<Name>Matt</Name>
+	<Surname>Van Der Westhuizen</Surname>
+	<Hobbies>
+		<Hobby>Boardgames</Hobby>
+		<Hobby>GameDev</Hobby>
+		<Hobby>Reading</Hobby>
+	</Hobbies>
+	<PhoneNumbers>
+		<PhoneNumber>
+			<Type>home</Type>
+			<Number>1234567890</Number>
+		</PhoneNumber>
+		<PhoneNumber>
+			<Type>cell</Type>
+			<Number>0821234567</Number>
+		</PhoneNumber>
+	</PhoneNumbers>
+</Person>
+```
+
+As you can see the syntax is quite verbose and perhaps a bit ugly. Some of the good features of XML are that you can create customized mark-up and there is versatile standards and tooling around XML (eg. XSD, XSLT, XPath / XQuery, etc). The main downsides are the verbosity and the complexity of the standards leading to slower more complex parsing code.
+
+### Message Formats: JSON
+JavaScript Object Notation was first publicized in 2002 (based on the date the JSON.org website was launched). It supports only three primitive types:
+* Scalar values
+* Arrays
+* Objects
+
+Here is an example of a valid JSON document:
+```
+{
+	"name": "Matt",
+	"surname": "Van Der Westhuizen",
+	"hobbies": [
+		"Boardgames",
+		"GameDev",
+		"Reading"
+	],
+	"phoneNumbers": [
+		{"type": "home", "number": "1234567890"},
+		{"type": "cell", "number": "0821234567"}
+	]
+}
+```
+
+JSON is very easy to consume on web clients thanks to being a subset of JavaScript. The limited number of concepts make parsing the data on non-web platforms quite easy to implement. JSON has less data overhead thanks to the lack of closing tags enclosing each item and no envelopes as are typically the case with SOAP services built on XML. Thanks to this simplicity there is little to no need for complex tooling.
+
+The one downside of JSON is that it is not as rigorous as XML, but there are some efforts underway such as JSON-HAL which defines a conventional REST message format and JSON Schema which is similar to XSD for XML and can be used to define the structure of JSON resources.
+
+### Message Formats: HAL
+Hypertext Application Language defines a strucutre for Resource representations. You still have your resource state as the root of the object as you used to, but it requires you to add a links section and specifies how to embed resources inside another resource. This diagram illustrates the concept quite nicely:
+
+![HAL Resource](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/rest-links.jpg)
+
+Here is an example showing a collection of users containing some embedded user resources:
+```
+{
+	"_links": {
+		"self": { "href": "/users" },
+		"next": { "href": "/users?page=2" },
+		"find": { "href": "/users{?surname}", "templated": true }
+	},
+	"_embedded": {
+		"users": [
+			{
+				"_links": { "self": "/users/1" },
+				"id": 1,
+				"name": "Rishal",
+				"surname": "Hurbans",
+				...
+			},
+			...
+		]
+	},
+	"page": 1,
+	"pages": 4
+}
+```
+
+One of the benefits of HAL is that it can work with either JSON or XML, but the downside is that there is no agreed upon way to specify validation rules.
+
+### Message Formats: JSON Schema
+JSON Schema is similar to XSD for XML, but only works for JSON resources. It provides a format for providing schema meta-data about resources that can be used for validation. It also has an extension for defining resource hypermedia which works similarly to HAL's _links.
+
+Here's an example of JSON Schema for a person which would allow us to validate that person's name is a string and that they should have at least 1 hobby:
+```
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Person Schema",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"hobbies": {
+			"type": "array",
+			"minItems": 1,
+			"items": { "type": "string"}
+		}
+    },
+    "required": ["name", "hobbies"]
+}
+```
