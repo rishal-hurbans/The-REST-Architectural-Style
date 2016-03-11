@@ -43,47 +43,6 @@ The cacheable architecture is the concept of cleverly caching data that is used 
 
 The concept of a uniform interface includes creating a standard method of interacting with a system. The uniform interface architecture also promotes abstraction of the implementation from the interface definition. This allows for clients to interact with all services in the same way, using a standard protocol and message format with a well defined set of operations.
 
-##Overview of HTTP
-HTTP (Hypertext Transfer Protocol) is an application protocol for distributed hypermedia information systems. HTTP is widely used in networked computing, it is hugely prevalent in how the internet works. This section describes the basic concepts of the protocol.
-
-###URLs (Universal Resource Locators)
-
-![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-urls.jpg)
-
-HTTP URLs consist of several components including:
-* Protocol: The protocol that the request is being made on. Typically HTTP or HTTPS. HTTPS is a secured version of HTTP. It requires a certificate to validate the authenticity of the server in relation to the domain.
-* Domain: The domain includes the address of the server. Typically this is represented by a sub-domain, a domain name, and a top level domain. In the example www.prolificidea.com, www is the sub-domain, this is the default sub-domain for the world wide web. prolificidea.com is the registered domain name.
-* Port: Different applications can communicate via different ports on a computer. Typically, port 80 is the default port for HTTP web application servers. 
-* Resource: The resource being requested by the client. This could be any media including virtual objects. An example is the /user resource gives the client data about users.
-* Query: Queries are used to provide parameters for the resource being requested. An example is the /user?name=bob specifies that the client wants a user with the name "bob".
-
-###Verbs
-HTTP provides several well known, widely used verbs for operations on resources, including:
-* GET: Read data or resources. This verb should never be used to modify data.
-* POST: Create data or resource. This verb should be used to create new data.
-* PUT: Update data or resources. This verb should work on existing resources. The same PUT request should be able to be repeated with the same end result.
-* DELETE: Delete data or resources. Similarly to PUT, a DELETE request should be able to be repeated with the same end result.
-
-HTTP provides operations that are less known, but still useful:
-* PATCH: Patch is used to update data or resources similarly to PUT. The difference is that PATCH requests should be used to update parts of a resource instead of updating a resource in its entirety. PATCH reduces the need to update complete objects by updating only the properties that require an update.
-* HEAD: Head is similar to GET requests, however, the request should not contain a body. This request is useful to validate data or resources.
-* TRACE: Trace invokes a remote, application-layer, loop-back. The TRACE request reflects the message that the final recipient server receives. This is useful to determine the final message after a request is proxied along a chain of servers. The TRACE request is useful for diagnostics on applications.
-
-###Status Codes
-* 1xx: Information. The request was received by the server, continue processing.
-* 2xx: Successful. The request was received, understood, accepted, and processed by the server. 
-* 3xx: Redirection. Additional action is required to complete the request.
-* 4xx: Client Error. There was a problem with the request received by the server.
-* 5xx: Server Error. The request was received, understood, and accepted by the server, however, a server error occurred in processing the request.
-
-Many applications tend to use the 200 OK status code for all responses to the client. In the case of errors or additional information, additional information is stored in the response message body. This should be avoided. The HTTP status codes should be leveraged and used correctly in the given context. An example being, a POST request should yield a 201 Created status code in the response rather than just a 200 OK.
-
-###HTTP/2
-
-![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-http2.jpg)
-
-HTTP/2 is a new faster version of HTTP. The aim of HTTP/2 is to make applications quicker and more robust. HTTP/2 was spawned from Google's SPDY protocol (SPDY is not an acronym, Google just thought is sounded cool). The biggest change is the method of transporting data. Data is being transported using binary rather than using text as HTTP/1 does. Binary data is smaller than text and therefore makes it more efficiently transported over a network. Nothing changes in terms of the semantics of the protocol. The same operations and standards exist when using it. This change shouldn't affect the average web application developer. Developers that build browsers, application servers, or applications that work directly with the network layer will be impacted by the changes of HTTP/2.
-
 ## REST Architectural Style
 The REST architectural style was documented by Roy Fielding in his dissertation in the year 2000 in an effort to provide a documented architecture that could be used to guide the development and design of the modern web. The first part of this paper characterised a large number of existing arcitectural constraints of which the ones covered above are only a subset.
 
@@ -291,6 +250,47 @@ So in summary the ideal REST API is a self-documented interactive service:
 * GET /api gives a list of all resources with their links
 * Following those links allow you to explore all of the resources
 * Using HTTP verbs on those resource URIs allow you to perform CRUD operations
+
+##Overview of HTTP
+HTTP (Hypertext Transfer Protocol) is an application protocol for distributed hypermedia information systems. HTTP is widely used in networked computing, it is hugely prevalent in how the internet works. This section describes the basic concepts of the protocol.
+
+###URLs (Universal Resource Locators)
+
+![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-urls.jpg)
+
+HTTP URLs consist of several components including:
+* Protocol: The protocol that the request is being made on. Typically HTTP or HTTPS. HTTPS is a secured version of HTTP. It requires a certificate to validate the authenticity of the server in relation to the domain.
+* Domain: The domain includes the address of the server. Typically this is represented by a sub-domain, a domain name, and a top level domain. In the example www.prolificidea.com, www is the sub-domain, this is the default sub-domain for the world wide web. prolificidea.com is the registered domain name.
+* Port: Different applications can communicate via different ports on a computer. Typically, port 80 is the default port for HTTP web application servers. 
+* Resource: The resource being requested by the client. This could be any media including virtual objects. An example is the /user resource gives the client data about users.
+* Query: Queries are used to provide parameters for the resource being requested. An example is the /user?name=bob specifies that the client wants a user with the name "bob".
+
+###Verbs
+HTTP provides several well known, widely used verbs for operations on resources, including:
+* GET: Read data or resources. This verb should never be used to modify data.
+* POST: Create data or resource. This verb should be used to create new data.
+* PUT: Update data or resources. This verb should work on existing resources. The same PUT request should be able to be repeated with the same end result.
+* DELETE: Delete data or resources. Similarly to PUT, a DELETE request should be able to be repeated with the same end result.
+
+HTTP provides operations that are less known, but still useful:
+* PATCH: Patch is used to update data or resources similarly to PUT. The difference is that PATCH requests should be used to update parts of a resource instead of updating a resource in its entirety. PATCH reduces the need to update complete objects by updating only the properties that require an update.
+* HEAD: Head is similar to GET requests, however, the request should not contain a body. This request is useful to validate data or resources.
+* TRACE: Trace invokes a remote, application-layer, loop-back. The TRACE request reflects the message that the final recipient server receives. This is useful to determine the final message after a request is proxied along a chain of servers. The TRACE request is useful for diagnostics on applications.
+
+###Status Codes
+* 1xx: Information. The request was received by the server, continue processing.
+* 2xx: Successful. The request was received, understood, accepted, and processed by the server. 
+* 3xx: Redirection. Additional action is required to complete the request.
+* 4xx: Client Error. There was a problem with the request received by the server.
+* 5xx: Server Error. The request was received, understood, and accepted by the server, however, a server error occurred in processing the request.
+
+Many applications tend to use the 200 OK status code for all responses to the client. In the case of errors or additional information, additional information is stored in the response message body. This should be avoided. The HTTP status codes should be leveraged and used correctly in the given context. An example being, a POST request should yield a 201 Created status code in the response rather than just a 200 OK.
+
+###HTTP/2
+
+![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-http2.jpg)
+
+HTTP/2 is a new faster version of HTTP. The aim of HTTP/2 is to make applications quicker and more robust. HTTP/2 was spawned from Google's SPDY protocol (SPDY is not an acronym, Google just thought is sounded cool). The biggest change is the method of transporting data. Data is being transported using binary rather than using text as HTTP/1 does. Binary data is smaller than text and therefore makes it more efficiently transported over a network. Nothing changes in terms of the semantics of the protocol. The same operations and standards exist when using it. This change shouldn't affect the average web application developer. Developers that build browsers, application servers, or applications that work directly with the network layer will be impacted by the changes of HTTP/2.
 
 ## Message Formats
 REST is not tied to a specific message format. Initially XML was used, but in recent years JSON has become more popular as many clients are easily able to interpret JSON messages. In theory there's nothing preventing you from creating a RESTful service that uses images as representations.
