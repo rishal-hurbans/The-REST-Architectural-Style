@@ -1,50 +1,50 @@
-#Robust REST Architectures
+# Robust REST Architectures
 
-In this era of digital technology, we find ourselves developing software that is required to be shared and utilized as far as possible in a manner that is as concise as possible. This is not a new concept, however, the need to refine and better these integrations have become more and more prevalent due to high demand for interoperability between different pieces of software.
+In this era of digital technology, we find ourselves developing software that is required to be shared and utilised as far as possible in a manner that is as concise as possible. This is not a new concept, however, the need to refine and better these integrations have become more and more prevalent due to high demand for interoperability between different pieces of software.
 
 An emerging trend is the use of RESTful APIs for both exposing data resources as well as consuming data resources from other sources. Within the development community, there exists some misunderstandings around what REST, and RESTful actually is. It is important to understand that REST is not a protocol, and it’s not a standard. REST is simply an architectural style achieved by combining a number of different well-known architectures.
 
 ##Architectures
 There exist commonly used architectures in most distributed web-based software. It is important to understand the purpose of these patterns and where it is applicable.
 
-###Client-Server
+### Client-Server
 
 ![Architectures - Client-Server](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-client_server.jpg)
 
-The client-server architecture is a fairly well-known and widely used architecture. Most network based applications work in this manner. The architecture consists of a server that acts as a central point that one or many clients may interact with. The idea behind a client-server architecture is that that the server does the heavy lifting and orchestration required, whilst the client consumes the rich data and functionality by interacting with the server. When these computers communicate with each other, there’s a clear need for a common protocol that is understood and supported by both computers. The commonality required is the message format. Imagine the protocol being a channel of communication between two people such as speech which is common between the two, and the message format being the language that is understood between them.
+The client-server architecture is a fairly well-known and widely used architecture. Most network based applications work in this manner. The architecture consists of a server that acts as a central point that one or many clients may interact with. The idea behind a client-server architecture is that the server does the heavy lifting and orchestration required, whilst the client consumes the rich data and functionality by interacting with the server. When these computers communicate with each other, there’s a clear need for a common protocol that is understood and supported by both computers. The commonality required is the message format. Imagine the protocol being a channel of communication between two people such as speech which is common between the two, and the message format being the language that is understood between them.
 
-###Layered
+### Layered
 
 ![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-layered.jpg)
 
-The layered architecture is utilized for a number of different factors. A layered approach allows developers to separate concerns and loosely couple components that interact with each other. The advantage of this approach when implemented optimally is that layers may change independently without impacting the rest of the application. There are also cases where a layered architecture may consist of a layer that is shared across multiple other layers. An example of this is a shared domain that is utilized throughout the application. The layered architecture implies that the various layers reside within the same application container.
+The layered architecture is utilised for a number of different factors. A layered approach allows developers to separate concerns and loosely couple components that interact with each other. The advantage of this approach when implemented optimally is that layers may change independently without impacting the rest of the application. There are also cases where a layered architecture may consist of a layer that is shared across multiple other layers. An example of this is a shared domain that is utilised throughout the application. The layered architecture implies that the various layers reside within the same application container.
 
-###Tiered
+### Tiered
 
 ![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-tiered.jpg)
 
 The tiered architecture is very similar to the layered architecture. It consists of the same pattern and characteristics. The terminology “tier” is mapped to the terminology “layer”. The key difference between a layered architecture and a tiered architecture is that each tier resides on a different physical or virtual environment. This implies that tiers that interact with each other consist of different deployments and environments.
 
-###Stateless
+### Stateless
 
 ![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-stateless.jpg)
 
 A vast majority of web applications make use of server-side managed session to keep track of a specific client, these sessions are often used for auth, keeping track of context, and storing meta data in memory that may be useful for managing the user’s activity. This make scaling difficult as additional technologies and development is required to create session management servers in a clustered environment. The stateless architecture removes the need for the server to create and hold sessions. In a stateless architecture, the state is managed by the client via some mechanism such as tokens, header data, etc. that are passed back and forth.
 
-###Cacheable
+### Cacheable
 
 ![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-cacheable.jpg)
 
 The cacheable architecture is the concept of cleverly caching data that is used often, and changed infrequently. Caching may occur in places like the client browser, and a caching server. Caching mechanisms are expected to be smart enough to server cached data or resources until that piece of data or resource changes for the client requesting it. One of the advantage of caching is a reduced load on the network, this translates to reduction of unnecessary requests, lower data usage, and a more optimal application.
 
-###Uniform Interface
+### Uniform Interface
 
 ![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-uniform_interface.jpg)
 
 The concept of a uniform interface includes creating a standard method of interacting with a system. The uniform interface architecture also promotes abstraction of the implementation from the interface definition. This allows for clients to interact with all services in the same way, using a standard protocol and message format with a well defined set of operations.
 
 ## REST Architectural Style
-The REST architectural style was documented by Roy Fielding in his dissertation in the year 2000 in an effort to provide a documented architecture that could be used to guide the development and design of the modern web. The first part of this paper characterised a large number of existing arcitectural constraints of which the ones covered above are only a subset.
+The REST architectural style was documented by Roy Fielding in his dissertation in the year 2000 in an effort to provide a documented architecture that could be used to guide the development and design of the modern web. The first part of this paper characterised a large number of existing architectural constraints of which the ones covered above are only a subset.
 
 In the second part of the paper REST is defined by composing a number of these architectural constraints into a cohesive whole. The patterns used are:
  1. **Client Server:** This constraint provides separation of concerns, improves scalability and improves the portability of the interface.
@@ -59,13 +59,13 @@ In the second part of the paper REST is defined by composing a number of these a
 A logical resource is any concept that can be addressed and referenced using a global identifier, for example a car, dog, etc. URIs are used as the global identifier when implementing REST over HTTP.
 
 #### Server
-A logicial server where resources are located, together with any corresponding data storage features.
+A logical server where resources are located, together with any corresponding data storage features.
 
 #### Client
 Logical clients make requests to logical servers to perform operations on their resources.
 
 #### Request & Response
-The client sends a request consisting of headers and optionally a represenation. The server responds with a status code, headers and optionally a representation.
+The client sends a request consisting of headers and optionally a representation. The server responds with a status code, headers and optionally a representation.
 
 #### Representation
 The representation contains some or all information about a resources and allows modification of the resource on the server by modifying the representation and sending it back to the server.
@@ -201,7 +201,7 @@ HTTP/1.1 200 OK
 ```
 
 ### Level 3 - HATEOAS
-The acryonym HATEAOS means Hypermedia As The Engine Of Application State. In essence it involves adding links to your representations to make your API explorable, similar to how links in HTML documents make web sites explorable.
+The acronym HATEAOS means Hypermedia As The Engine Of Application State. In essence it involves adding links to your representations to make your API explorable, similar to how links in HTML documents make web sites explorable.
 
 #### List available API resources
 ```
@@ -321,10 +321,10 @@ Extensible Markup Language was introduced in 1996 and forms the basis for SOAP-W
 </Person>
 ```
 
-As you can see the syntax is quite verbose and perhaps a bit ugly. Some of the good features of XML are that you can create customized mark-up and there is versatile standards and tooling around XML (eg. XSD, XSLT, XPath / XQuery, etc). The main downsides are the verbosity and the complexity of the standards leading to slower more complex parsing code.
+As you can see the syntax is quite verbose and perhaps a bit ugly. Some of the good features of XML are that you can create customised mark-up and there is versatile standards and tooling around XML (e.g. XSD, XSLT, XPath / XQuery, etc). The main downsides are the verbosity and the complexity of the standards leading to slower more complex parsing code.
 
 ### Message Formats: JSON
-JavaScript Object Notation was first publicized in 2002 (based on the date the JSON.org website was launched). It supports only three primitive types:
+JavaScript Object Notation was first publicised in 2002 (based on the date the JSON.org website was launched). It supports only three primitive types:
 * Scalar values
 * Arrays
 * Objects
@@ -351,7 +351,7 @@ JSON is very easy to consume on web clients thanks to being a subset of JavaScri
 The one downside of JSON is that it is not as rigorous as XML, but there are some efforts underway such as JSON-HAL which defines a conventional REST message format and JSON Schema which is similar to XSD for XML and can be used to define the structure of JSON resources.
 
 ### Message Formats: HAL
-Hypertext Application Language defines a strucutre for Resource representations. You still have your resource state as the root of the object as you used to, but it requires you to add a links section and specifies how to embed resources inside another resource. This diagram illustrates the concept quite nicely:
+Hypertext Application Language defines a structure for Resource representations. You still have your resource state as the root of the object as you used to, but it requires you to add a links section and specifies how to embed resources inside another resource. This diagram illustrates the concept quite nicely:
 
 ![HAL Resource](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/rest-links.jpg)
 
@@ -404,3 +404,5 @@ Here's an example of JSON Schema for a person which would allow us to validate t
     "required": ["name", "hobbies"]
 }
 ```
+### Conclusion
+The REST Architectural style is comprised of a combination of well known architectures. It leverages the benefits of each architecture to provide a consistent, yet flexible pattern for building interactive services. The Richardson maturity model is useful as a yardstick to determine ease of use and extensibility of your RESTful implementation. Although typical RESTful implementations operate over HTTP using JSON as a message format; one could potentially use any protocol and message format. Given this, one could create a RESTful implementation on the FTP protocol, using images as a message format. This would still conform to the principles of a RESTful architecture, however, does it make sense? Bottom line, is that the REST architectural style is a guideline, it's open to creativity (and abuse). A truly elegant RESTful API is a combination of following these guidelines as well as designing resources and interactions that solve real-world problems in a sensible way.
