@@ -10,37 +10,37 @@ There exist commonly used architectures in most distributed web-based software. 
 
 ### Client-Server
 
-![Architectures - Client-Server](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-client_server.jpg)
+![Architectures - Client-Server](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-client_server.png)
 
 The client-server architecture is a fairly well-known and widely used architecture. Most network based applications work in this manner. The architecture consists of a server that acts as a central point that one or many clients may interact with. The idea behind a client-server architecture is that the server does the heavy lifting and orchestration required, whilst the client consumes the rich data and functionality by interacting with the server. When these computers communicate with each other, there’s a clear need for a common protocol that is understood and supported by both parties. The commonality required is the message format. Imagine the protocol being a channel of communication between two people such as speech which is common between the two, and the message format being the language that is understood between them.
 
 ### Layered
 
-![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-layered.jpg)
+![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-layered.png)
 
 The layered architecture is utilised for a number of different factors. A layered approach allows developers to separate concerns and loosely couple components that interact with each other. The advantage of this approach when implemented optimally is that layers may change independently without impacting the rest of the application. There are also cases where a layered architecture may consist of a layer that is shared across multiple other layers. An example of this is a shared domain that is utilised throughout the application. The layered architecture implies that the various layers reside within the same application container.
 
 ### Tiered
 
-![Architectures - Tiered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-tiered.jpg)
+![Architectures - Tiered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-tiered.png)
 
 The tiered architecture is very similar to the layered architecture. It consists of the same pattern and characteristics. The terminology “tier” is mapped to the terminology “layer”. The key difference between a layered architecture and a tiered architecture is that each tier resides on a different physical or virtual environment. This implies that tiers that interact with each other consist of different deployments and environments.
 
 ### Stateless
 
-![Architectures - Stateless](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-stateless.jpg)
+![Architectures - Stateless](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-stateless.png)
 
 A vast majority of web applications make use of a server-side managed session to keep track of a specific client. These sessions are often used for auth (authentication and authorization), keeping track of context, and storing meta data in memory that may be useful for managing the user’s activity. This makes scaling difficult as additional technologies and development is required to create session management servers in a clustered environment. The stateless architecture removes the need for the server to create and hold sessions. In a stateless architecture, the state is managed by the client via some mechanism such as tokens, header data, etc. that are passed back and forth between the client and server.
 
 ### Cacheable
 
-![Architectures - Cacheable](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-cacheable.jpg)
+![Architectures - Cacheable](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-cacheable.png)
 
 The cacheable architecture is the concept of cleverly caching data that is used often, and changed infrequently. Caching may occur in places like the client browser, and a caching server. Caching mechanisms are expected to be smart enough to serve cached data or resources until that piece of data or resource changes for the client requesting it. One of the advantages of caching is a reduced load on the network, this translates to reduction of unnecessary requests, lower data usage, and a more optimal performing application.
 
 ### Uniform Interface
 
-![Architectures - Uniform Interface](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-uniform_interface.jpg)
+![Architectures - Uniform Interface](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/architecture-uniform_interface.png)
 
 The concept of a uniform interface includes creating a standard method of interacting with a system. The uniform interface architecture also promotes abstraction of the implementation from the interface definition. This allows for clients to interact with all services in the same way, using a standard protocol and message format with a well defined set of operations.
 
@@ -74,7 +74,7 @@ The representation contains some or all information about a resources and allows
 ### Richardson Maturity Model
 The Richardson Maturity Model was first introduced by Leonard Richardson in a 2008 conference talk as a way to judge the quality of a RESTful web API. It assumes that most of the RESTful constraints are met by using web technologies and looks at how an API uses HTTP, URIs and HyperMedia to determine its quality.
 
-![Richardson Maturity Model](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/rest-richardson_maturity_model.jpg)
+![Richardson Maturity Model](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/rest-richardson_maturity_model.png)
 
 #### Level 0 - The swamp of POX
 The swamp of Plain Old XML describes an API that is not RESTful at all. An example would be a SOAP-like web service using HTTP as transport, but not using any of the web mechanisms to its advantage. In the example below the API user will always POST a request to the same URI. What action is performed is controlled by the contents of the request.
@@ -259,7 +259,7 @@ The most popular protocol used for RESTful implementations is HTTP. HTTP (Hypert
 
 ###URLs (Universal Resource Locators)
 
-![Architectures - HTTP URLs](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-urls.jpg)
+![Architectures - HTTP URLs](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-urls.png)
 
 HTTP URLs consist of several components including:
 * Protocol: The protocol that the request is being made on. Typically HTTP or HTTPS. HTTPS is a secured version of HTTP. It requires a certificate to validate the authenticity of the server in relation to the domain.
@@ -291,7 +291,7 @@ Many applications tend to use the 200 OK status code for all responses to the cl
 
 ###HTTP/2
 
-![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-http2.jpg)
+![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-http2.png)
 
 HTTP/2 is a new faster version of HTTP. The aim of HTTP/2 is to make applications quicker and more robust. HTTP/2 was spawned from Google's SPDY protocol (SPDY is not an acronym, Google just thought is sounded cool). The biggest change is the method of transporting data. Data is being transported using binary rather than using text as HTTP/1 does. Binary data is smaller than text and therefore makes it more efficiently transported over a network. Nothing changes in terms of the semantics of the protocol. The same operations and standards exist when using it. This change shouldn't affect the average web application developer. Developers that build browsers, application servers, or applications that work directly with the network layer will be impacted by the changes of HTTP/2.
 
@@ -356,7 +356,7 @@ The one downside of JSON is that it is not as rigorous as XML, but there are som
 ### Message Formats: HAL
 Hypertext Application Language defines a structure for Resource representations. You still have your resource state as the root of the object as you used to, but it requires you to add a links section and specifies how to embed resources inside another resource. This diagram illustrates the concept quite nicely:
 
-![HAL Resource](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/rest-links.jpg)
+![HAL Resource](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/rest-links.png)
 
 Here is an example showing a collection of users containing some embedded user resources:
 ```
