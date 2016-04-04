@@ -5,7 +5,7 @@ In this era of digital technology, we find ourselves developing software that is
 
 An emerging trend is the use of RESTful APIs for both exposing data resources as well as consuming data resources from other sources. Within the development community, there exists some misunderstandings around what REST, and RESTful actually is. It is important to understand that REST is not a protocol, and it’s not a standard. REST is simply an architectural style achieved by combining a number of different well-known architectures.
 
-##Architectures
+## Architectures
 There exist commonly used architectures in most distributed web-based software. It is important to understand the purpose of these patterns and where it is applicable. This will help in understanding the principles of a RESTful architecture.
 
 ### Client-Server
@@ -254,10 +254,10 @@ So in summary the ideal REST API is a self-documented interactive service:
 * Following those links allow you to explore all of the resources
 * Using HTTP verbs on those resource URIs allow you to perform CRUD operations
 
-##Overview of HTTP
+## Overview of HTTP
 The most popular protocol used for RESTful implementations is HTTP. HTTP (Hypertext Transfer Protocol) is an application protocol for distributed hypermedia information systems. HTTP is widely used in networked computing, it is hugely prevalent in how the internet works. This section describes the basic concepts of the protocol.
 
-###URLs (Universal Resource Locators)
+### URLs (Universal Resource Locators)
 
 ![Architectures - HTTP URLs](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-urls.png)
 
@@ -268,7 +268,7 @@ HTTP URLs consist of several components including:
 * Resource: The resource being requested by the client. This could be any media including virtual objects. An example is the /user resource gives the client data about users.
 * Query: Queries are used to provide parameters for the resource being requested. An example is the /user?name=bob specifies that the client wants a user with the name "bob".
 
-###Verbs
+### Verbs
 HTTP provides several well known, widely used verbs for operations on resources, including:
 * GET: Read data or resources. This verb should never be used to modify data.
 * POST: Create data or resource. This verb should be used to create new data.
@@ -280,7 +280,7 @@ HTTP provides operations that are less known, but still useful:
 * HEAD: Head is similar to GET requests, however, the request should not contain a body. This request is useful to validate data or resources.
 * TRACE: Trace invokes a remote, application-layer, loop-back. The TRACE request reflects the message that the final recipient server receives. This is useful to determine the final message after a request is proxied along a chain of servers. The TRACE request is useful for diagnostics on applications.
 
-###Status Codes
+### Status Codes
 * 1xx: Information. The request was received by the server, continue processing.
 * 2xx: Successful. The request was received, understood, accepted, and processed by the server. 
 * 3xx: Redirection. Additional action is required to complete the request.
@@ -289,7 +289,7 @@ HTTP provides operations that are less known, but still useful:
 
 Many applications tend to use the 200 OK status code for all responses to the client. In the case of errors, additional information is stored in the response message body. This should be avoided. The HTTP status codes should be leveraged and used correctly in the given context. An example being, a POST request should yield a 201 Created status code in the response rather than just a 200 OK.
 
-###HTTP/2
+### HTTP/2
 
 ![Architectures - Layered](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-http2.png)
 
