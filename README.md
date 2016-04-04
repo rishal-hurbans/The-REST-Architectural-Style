@@ -409,3 +409,8 @@ Here's an example of JSON Schema for a person which would allow us to validate t
 ```
 ### Conclusion
 The REST Architectural style is comprised of a combination of well known architectures. It leverages the benefits of each architecture to provide a consistent, yet flexible pattern for building interactive services. The Richardson maturity model is useful as a yardstick to determine ease of use and extensibility of your RESTful implementation. Although typical RESTful implementations operate over HTTP using JSON as a message format; one could potentially use any protocol and message format. In theory one could create an API that conforms to the principals of the REST architectural style that uses the FTP protocol with images as the message format - it's just questionable if that would be useful? Bottom line, is that the REST architectural style is a guideline, it's open to creativity (and abuse). A truly elegant RESTful API is a combination of following these guidelines as well as designing resources and interactions that solve real-world problems in a sensible way.
+
+### References
+* [Architectural Styles and the Design of Network-based Software Architectures by Roy Thomas Fielding](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
+* [Richardson Maturity Model by Martin Fowler](http://martinfowler.com/articles/richardsonMaturityModel.html)
+* [Act Three: The Maturity Heuristic by Leonard Richardson](https://www.crummy.com/writing/speaking/2008-QCon/act3.html)
