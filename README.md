@@ -1,5 +1,5 @@
 # The REST Architectural Style
-By Rishal Hurbans & Matt Van Der Westhuizen
+By [Rishal Hurbans](https://twitter.com/RishalHurbans) & [Matt Van Der Westhuizen](https://twitter.com/chaotikZA)
 
 In this era of digital technology, we find ourselves developing software that is required to be shared and utilised as far as possible in a manner that is as concise as possible. This is not a new concept, however, the need to refine and better these integrations have become more and more prevalent due to high demand for interoperability between different pieces of software.
 
