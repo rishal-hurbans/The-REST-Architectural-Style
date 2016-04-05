@@ -414,3 +414,6 @@ The REST Architectural style is comprised of a combination of well known archite
 * [Architectural Styles and the Design of Network-based Software Architectures by Roy Thomas Fielding](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
 * [Richardson Maturity Model by Martin Fowler](http://martinfowler.com/articles/richardsonMaturityModel.html)
 * [Act Three: The Maturity Heuristic by Leonard Richardson](https://www.crummy.com/writing/speaking/2008-QCon/act3.html)
+
+### Affiliated Publishes
+* [Prolific Idea - Blog](http://blog.prolificidea.com/the-rest-architectural-style/)
