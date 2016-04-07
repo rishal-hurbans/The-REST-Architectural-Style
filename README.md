@@ -156,7 +156,6 @@ POST /talks HTTP/1.1
 HTTP/1.1 200 OK
 <talk id="1" name="Robust REST Architectures">
 	<questions>
-		<question id="1" question="Do you guys even REST?" username="HelloPieter" />
 	</questions>
 </talk>
 ```
