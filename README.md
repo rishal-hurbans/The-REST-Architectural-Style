@@ -416,3 +416,4 @@ The REST Architectural style is comprised of a combination of well known archite
 
 ### Affiliated Publishes
 * [Prolific Idea - Blog](http://blog.prolificidea.com/the-rest-architectural-style/)
+* [Source](http://source.entelect.co.za/the-rest-architectural-style)
