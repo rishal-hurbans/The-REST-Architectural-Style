@@ -203,7 +203,7 @@ HTTP/1.1 200 OK
 ```
 
 ### Level 3 - HATEOAS
-The acronym HATEAOS means Hypermedia As The Engine Of Application State. In essence it involves adding links to your representations to make your API explorable, similar to how links in HTML documents make web sites explorable.
+The acronym HATEOAS means Hypermedia As The Engine Of Application State. In essence it involves adding links to your representations to make your API explorable, similar to how links in HTML documents make web sites explorable.
 
 #### List available API resources
 ```
