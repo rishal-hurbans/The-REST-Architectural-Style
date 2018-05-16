@@ -256,6 +256,9 @@ So in summary the ideal REST API is a self-documented interactive service:
 ## Overview of HTTP
 The most popular protocol used for RESTful implementations is HTTP. HTTP (Hypertext Transfer Protocol) is an application protocol for distributed hypermedia information systems. HTTP is widely used in networked computing, it is hugely prevalent in how the internet works. This section describes the basic concepts of the protocol.
 
+### HTTP vs REST Terminology
+Based on the [RFC 2616 - Hypertext Transfer Protocol](https://tools.ietf.org/html/rfc2616) specification the terminology for the HTTP "method" is referred to as a "verb" in the context of the Richardson Maturity model, and similarly with HTTP's "path", "resource" is used. To elaborate, in the context of REST, a request performs an action(verb) on a resource(noun).
+
 ### URLs (Universal Resource Locators)
 
 ![Architectures - HTTP URLs](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-urls.png)
@@ -413,7 +416,4 @@ The REST Architectural style is comprised of a combination of well known archite
 * [Architectural Styles and the Design of Network-based Software Architectures by Roy Thomas Fielding](https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
 * [Richardson Maturity Model by Martin Fowler](http://martinfowler.com/articles/richardsonMaturityModel.html)
 * [Act Three: The Maturity Heuristic by Leonard Richardson](https://www.crummy.com/writing/speaking/2008-QCon/act3.html)
-
-### Affiliated Publishes
-* [Prolific Idea - Blog](http://blog.prolificidea.com/the-rest-architectural-style/)
-* [Source](http://source.entelect.co.za/the-rest-architectural-style)
+* [RFC 2616 - Hypertext Transfer Protocol](https://tools.ietf.org/html/rfc2616)
