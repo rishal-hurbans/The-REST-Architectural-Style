@@ -231,17 +231,17 @@ GET /api/talks HTTP/1.1
 HTTP/1.1 200 OK
 
 <talks>
-    <talk>
-    	<name>Robust REST Architectures</name>
-    	<links>
-            <link>
-            	<rel>self</rel>
-            	<href>/api/talks/1</href>
-        	</link>
-        	<link>
-        		<rel>questions</rel>
-        		<href>/api/talks/1/questions</href>
-    		</link>
+	<talk>
+		<name>Robust REST Architectures</name>
+		<links>
+			<link>
+				<rel>self</rel>
+				<href>/api/talks/1</href>
+			</link>
+			<link>
+				<rel>questions</rel>
+				<href>/api/talks/1/questions</href>
+			</link>
 		</links>
 	</talk>
 </talks>
