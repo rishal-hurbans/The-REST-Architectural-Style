@@ -259,7 +259,7 @@ The most popular protocol used for RESTful implementations is HTTP. HTTP (Hypert
 ### HTTP vs REST Terminology
 Based on the [RFC 2616 - Hypertext Transfer Protocol](https://tools.ietf.org/html/rfc2616) specification the terminology for the HTTP "method" is referred to as a "verb" in the context of the Richardson Maturity model, and similarly with HTTP's "path", "resource" is used. To elaborate, in the context of REST, a request performs an action(verb) on a resource(noun).
 
-### URLs (Universal Resource Locators)
+### URLs (Uniform Resource Locators)
 
 ![Architectures - HTTP URLs](https://raw.githubusercontent.com/rishal-hurbans/Robust-REST-Architectures/master/images/http-urls.png)
 
